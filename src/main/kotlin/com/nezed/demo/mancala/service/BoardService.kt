@@ -4,8 +4,6 @@ import com.nezed.demo.mancala.model.*
 import com.nezed.demo.mancala.model.data.BoardPlayerEnum
 import com.nezed.demo.mancala.model.data.BoardStateEnum
 import com.nezed.demo.mancala.model.data.getOpposite
-import com.nezed.demo.mancala.service.exception.BoardFinishedException
-import com.nezed.demo.mancala.service.exception.RulesViolationException
 import org.springframework.stereotype.Service
 
 private const val PITS_CONT = 6

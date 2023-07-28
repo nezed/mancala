@@ -1,10 +1,11 @@
 package com.nezed.demo.mancala.service
 
 import com.nezed.demo.mancala.model.Session
-import com.nezed.demo.mancala.model.data.BoardPlayerEnum
 import com.nezed.demo.mancala.model.dto.SessionMoveDto
 import com.nezed.demo.mancala.repository.SessionRepository
-import com.nezed.demo.mancala.service.exception.*
+import com.nezed.demo.mancala.service.exception.SessionAccessException
+import com.nezed.demo.mancala.service.exception.SessionFullException
+import com.nezed.demo.mancala.service.exception.SessionNotFoundException
 import jakarta.servlet.http.HttpSession
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service

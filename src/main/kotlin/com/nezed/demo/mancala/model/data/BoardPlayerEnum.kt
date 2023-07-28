@@ -5,7 +5,7 @@ import kotlin.random.Random
 enum class BoardPlayerEnum {
     ONE, TWO;
 
-    companion object {}
+    companion object
 }
 
 fun BoardPlayerEnum.getOpposite(): BoardPlayerEnum {
