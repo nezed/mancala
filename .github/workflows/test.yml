@@ -1,0 +1,27 @@
+name: Run Tests
+run-name: ${{ github.actor }} is testing 🚀
+
+on: [push]
+
+jobs:
+  test-spring:
+    name: Test Spring Boot Application
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+    steps:
+      - name: Checkout GitHub Action
+        uses: actions/checkout@main
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup and execute Gradle 'test' task
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: clean test
