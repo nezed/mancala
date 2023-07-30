@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  app:
+    image: ghcr.io/nezed/mancala:latest
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+
+  sonarqube:
+    image: sonarqube
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
+
