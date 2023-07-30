@@ -16,7 +16,6 @@ java {
 
 repositories {
 	mavenCentral()
-	jcenter()
 }
 
 dependencies {
