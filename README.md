@@ -4,7 +4,7 @@
 
 This is the demonstration of Mancala aka Kalaha game.
 
-Here you'll find Game Server, acting as an Oracle.
+Here you'll find the Game Server, acting as an Oracle.
 
 ## Architecture approach
 
@@ -14,9 +14,9 @@ As the main purpose of this project is demonstration of problem-solving skills, 
 - As there's no UI, Game Server acts as an abstraction to show how game rules and actions could be implemented
 - Well-known technologies and frameworks used to ensure optimal quality, security and maintainability
 
-## Architecture Decision
+## Architecture Decisions
 
-- User interactions might be fit into `REST` design principe, so it would be supported by many of tooling for documentation, load balancing, security, logging, etc:
+- User interactions might be fit into `REST` design principe, so we can enjoy a lot of compatible tooling for documentation, load balancing, security, logging, etc:
     - `Spring Boot` was chosen as the most mature and rich solution for building RESTful APIs
     - `Kotlin` was chosen as Java-ecosystem friendly, but more expressive language
 - `MongoDB` was chosen to preserve game state, and provide ability of basic horizontal scalability:
@@ -32,22 +32,22 @@ As the main purpose of this project is demonstration of problem-solving skills, 
 - Testing – as the application is rich of behaviours and components, it's a good example to use Testing-pyramid approach, implementing
   - many small and cheap tests to ensure dozens of business-logic cases
   - few high-order, infrastructure dependent and slow(er) tests, ensuring that all parts of application are working together
-- CI/CD as the general 'rule of thumb'. While there's no big deal which to choose for this particular project, GitHub Actions is a good choice as easy, stable, free and fast solution. 
+- CI/CD to help with our development process and ensure quality. While there's no big deal which to choose for this particular project, GitHub Actions is a good choice as easy, stable, free and fast solution. 
 
 ## Architecture drawbacks
 
-- Clients don't have ability to be notified when opponent moves
-  - In those terms ot would rather make sense to have game running via bi-directional protocol, like WebSockets
-  - While the 'Long Pooling' might be a temporary solution, it would make scaling of entire application stack problematic 
+- Clients don't have ability to get notified when opponent moves
+  - In those terms it would rather make sense to have game running via bidirectional protocol, like WebSockets
+  - While the 'Long Pooling' might be a temporary solution, it would make scaling of entire application stack problematic
 
-To solve them we'll need a Pub/Sub (or a Queue, depending on readability requirements), to which Web Service instances would be connected to.
+To provide such ability, we'll need a Pub/Sub (or a Queue, depending on readability requirements), to which Web Service instances would be connected to.
 
 ## Clarifying specific game rule cases
 
 #### When move ends is empty pit
 
 If it's players **OWN** pit, then stones from opponents opposite pit are captured straight to own mancala.
-> While there exists an alternate rule, allowing player to capture opponents opposite pit to its own pit, but this case isn't covered as alternative game rule yet. 
+> While there an alternate rule exists, allowing player to capture opponents opposite pit to its own pit, but this case isn't covered as alternative game rule yet. 
 
 If it's opponents pit - nothing happens, opponent is taking his next turn.
 
@@ -64,10 +64,10 @@ Players are grabbing all stones from their own pits and putting them into own ma
 Requirements:
 - JDK 17
 - Gradle 8
-- kotlin 1.9.0
+- Kotlin 1.9.0
 - MongoDB server
 
-#### Local mongo
+#### Local mongodb
 ```sh
 $ docker run -d -p 27017:27017 mongo:latest
 ```
@@ -91,7 +91,7 @@ For more commands refer to [Spring Boot Gradle Plugin](https://docs.spring.io/sp
 
 ### CI/CD
 
-Github Actions is used to test and publish application image.
+GitHub Actions is used to test and publish application image.
 
 See:
 - [Actions](https://github.com/nezed/mancala/actions)
